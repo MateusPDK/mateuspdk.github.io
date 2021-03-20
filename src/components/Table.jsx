@@ -26,7 +26,7 @@ const UserRow = ({
     <td>{city && city}</td>
     <td>{uf && uf}</td>
     <td className="actions">
-      <a href={`${process.env.PUBLIC_URL}/editar-usuario?id=${id}`} title="Editar Usuário" alt="Editar Usuário">
+      <a href={`${process.env.PUBLIC_URL}/update-user?id=${id}`} title="Editar Usuário" alt="Editar Usuário">
         <ButtonIcon edit name="Edit" onclick={editUser} />
       </a>
       

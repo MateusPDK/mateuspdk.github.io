@@ -6,7 +6,7 @@ import "../assets/scss/includes/_header.scss";
 const routes = [
   {
     name: "Usuários",
-    route: `${process.env.PUBLIC_URL}/`,
+    route: `${process.env.PUBLIC_URL}/users`,
   },
   {
     name: "CEP's",
