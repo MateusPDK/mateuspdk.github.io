@@ -4,77 +4,62 @@ import ButtonIcon from "./ButtonIcon";
 
 import "../assets/scss/components/_table.scss";
 
-const dummyUsers = [
-  {
-    id: "1",
-    img: "",
-    name: "Walter White",
-    age: "50",
-    street: "Lorem ipsum...",
-    uf: "NY"
-  },
-  {
-    id: "2",
-    img: "",
-    name: "Anakin Skywalker",
-    age: "31",
-    street: "Lorem ipsum...",
-    uf: "TI"
-  },
-  {
-    id: "3",
-    img: "",
-    name: "Jeff",
-    age: "27",
-    street: "Lorem ipsum...",
-    uf: "SP"
-  },
-];
-
 const UserRow = ({
   id,
-  img,
+  imgUrl,
   name,
-  age,
-  street,
+  cep,
+  city,
+  streetName,
+  streetNumber,
+  neighborhood,
   uf,
   editUser,
   deleteUser
 }) => (
   <tr>
-    <td><div className="user-img" style={{backgroundImage: `url(${img ? img : "../assets/img/icons/user.svg"})`}} /></td>
+    <td><div className="user-img" style={{backgroundImage: `url(${imgUrl ? imgUrl : "../assets/img/icons/user.svg"})`}} /></td>
     <td>{name && name}</td>
-    <td>{age && age}</td>
-    <td>{street && street}</td>
+    <td>{cep && cep}</td>
+    <td>{streetName && streetName} {streetNumber && `, ${streetNumber}`}</td>
+    <td>{neighborhood && neighborhood}</td>
+    <td>{city && city}</td>
     <td>{uf && uf}</td>
     <td className="actions">
-      <ButtonIcon edit name="Edit" onclick={() => editUser(id)} />
-      <ButtonIcon remove name="Delete" onclick={() => deleteUser(id)} />
+      <a href={`${process.env.PUBLIC_URL}/editar-usuario?id=${id}`} title="Editar Usuário" alt="Editar Usuário">
+        <ButtonIcon edit name="Edit" onclick={editUser} />
+      </a>
+      
+      <ButtonIcon remove name="Delete" onclick={deleteUser} />
     </td>
   </tr>
 );
 
-const Table = ({ headers }) => {
-  const editUserHandler = id => {
-    console.log(`Edit User ${id}`);
-  };
-
+const Table = ({ headers, data }) => {
   const deleteUserHandler = id => {
     console.log(`Delete User ${id}`);
   };
 
   const renderUsers = users => {
-    return users.map(({ id, name, age, street, uf }) => (
-      <UserRow
-        key={id}
-        name={name}
-        age={age}
-        street={street}
-        uf={uf}
-        editUser={editUserHandler}
-        deleteUser={deleteUserHandler}
-      />
-    ));
+    return users.map(({ id, imgUrl, name, address }) => {
+      const { cep, city, neighborhood, streetName, streetNumber, uf } = address;
+
+      return (
+        <UserRow
+          key={id}
+          id={id}
+          imgUrl={imgUrl}
+          name={name}
+          cep={cep}
+          city={city}
+          streetName={streetName}
+          streetNumber={streetNumber}
+          neighborhood={neighborhood}
+          uf={uf}
+          deleteUser={() => deleteUserHandler(id)}
+        />
+      )
+    });
   };
   
   return (
@@ -86,7 +71,7 @@ const Table = ({ headers }) => {
       </thead>
 
       <tbody>
-        {renderUsers(dummyUsers)}
+        {renderUsers(data)}
       </tbody>
     </table>
   );

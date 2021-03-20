@@ -5,12 +5,12 @@ import "../assets/scss/includes/_header.scss";
 
 const routes = [
   {
-    name: "Users List",
+    name: "Usuários",
     route: `${process.env.PUBLIC_URL}/`,
   },
   {
-    name: "Users List",
-    route: `${process.env.PUBLIC_URL}/`,
+    name: "CEP's",
+    route: `${process.env.PUBLIC_URL}/list-of-ceps`,
   },
 ];
 

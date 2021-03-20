@@ -1,0 +1,33 @@
+@import "../variables";
+@import "../utils";
+
+div.default-wrapper {
+  div.card {
+    h1.title {
+      margin-bottom: 40px;
+    }
+
+    form {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 60px;
+
+      div.collumn {
+        width: 32%;
+
+        div.image-preview {
+          width: 200px;
+          height: 200px;
+          background-color: $darkGray;
+        }
+      }
+    }
+    
+    button.btn-default {
+      width: 400px;
+      margin-left: auto;
+      margin-right: 0;
+      display: block;
+    }
+  }
+}

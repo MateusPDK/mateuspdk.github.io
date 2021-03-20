@@ -22,4 +22,19 @@ body {
   background-color: $white;
   border-radius: 16px;
   padding: 32px 24px;
+
+  &.card-login {
+    max-width: 100%;
+    margin: 16px;
+    width: 450px;
+    height: 600px;
+  }
+}
+
+// TYPOGRAPHY
+.title {
+  font-family: $roboto;
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: $bold;
 }
