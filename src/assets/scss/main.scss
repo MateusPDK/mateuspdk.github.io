@@ -1,9 +1,12 @@
 @charset "utf-8";
 
+@import "bootstrap/dist/css/bootstrap.css";
+
 // Reset
 @import "_reset";
 
 // Fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 @import "_fonts";
 
 // Variables
@@ -11,7 +14,3 @@
 
 // General
 @import "_general";
-
-// Includes
-@import "./components/header";
-@import "./components/footer";

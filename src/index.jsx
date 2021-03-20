@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ListUsers from "./pages/ListUsers";
 import EditUser from "./pages/EditUser";
 
-import "bootstrap/dist/css/bootstrap.css";
+// import "bootstrap/dist/css/bootstrap.css";
 import "./assets/scss/main.scss";
 
 ReactDOM.render(

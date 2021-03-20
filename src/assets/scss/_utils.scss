@@ -1,0 +1,66 @@
+// breakpoint
+@mixin breakpoint($size) {
+  @media screen and (max-width: $size) { @content; }
+}
+
+/*
+|---------------------------
+| Nossos mixins
+|---------------------------
+*/
+/* Mixin para máscaras */
+@mixin mascara($color) {
+  position: relative;
+  &::before {
+    content: close-quote;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color;
+  }
+}
+/* função que converte uma fonte em px para uma versão 'rem' baseado na fonte de 16px */
+@function px-rem($numero, $fonte-base: 16px){
+  @return #{( $numero/$fonte-base  )}rem;
+}
+/**
+* Esse utilitário retorna o valor em 'em'
+* deve ser usado em locais onde o valor estiver relacionado ao tamanho da fonte
+*/
+@function px-em($numero, $fonte-base){
+  @return #{( $numero/$fonte-base  )}em; 
+}
+/**
+* Esse utilitário foi feito para simplificar a digitação
+* retorna a font-size e line-height configurados com os valores passados
+* a variável $scale é opcional, ela permite calcular de maneira simples, quanto
+* seria o valor da fonte se aplicado algum modificador
+*/
+@mixin gh-fontline($font-size, $line-height, $scale: 1) {
+  @if $scale == 1 {
+    font-size: px-rem($font-size);
+    line-height: px-rem($line-height);
+  } @else {
+    font-size: px-rem($font-size * $scale);
+    line-height: px-rem($line-height * $scale);
+  }
+}
+
+/**
+* Esse utilitário foi feito para simplificar a digitação
+* retorna o padding top e bottom
+* a variável $scale é opcional, ela permite calcular de maneira simples, quanto
+* seria o valor da fonte se aplicado algum modificador
+*/
+@mixin gh-padding-top-bottom($padding-top, $padding-bottom, $scale: 1) {
+  @if $scale == 1 {
+    padding-top: $padding-top;
+    padding-bottom: $padding-bottom;
+  } @else {
+    padding-top: $padding-top * $scale;
+    padding-bottom: $padding-bottom * $scale;
+  }
+}

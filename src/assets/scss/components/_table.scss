@@ -1,0 +1,65 @@
+@import "../variables";
+@import "../utils";
+
+table.table-default {
+  width: 100%;
+
+  thead {
+    border-bottom: 3px solid $darkGray;
+
+    tr {
+      th {
+        font-family: $roboto;
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: $bold;
+        padding: 16px 0;
+        vertical-align: middle;
+
+        &:first-of-type {
+          width: 100px;
+        }
+        
+        &:last-of-type {
+          text-align: center;
+          width: 200px;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid $darkGray;
+
+      td {
+        font-family: $roboto;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: $regular;
+        padding: 10px 0;
+        vertical-align: middle;
+
+        div.user-img {
+          width: 38px;
+          height: 38px;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-color: $darkGray;
+          border-radius: 50%;
+        }
+        
+        &.actions {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          button {
+            margin: 0 8px;
+          }
+        }
+      }
+    }
+  }
+}
