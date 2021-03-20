@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+// Reset
+@import "_reset";
+
+// Fonts
+@import "_fonts";
+
+// Variables
+@import "_variables";
+
+// General
+@import "_general";
+
+// Includes
+@import "./components/header";
+@import "./components/footer";
