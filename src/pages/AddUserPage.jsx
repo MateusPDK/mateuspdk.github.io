@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import Swal from "sweetalert2";
 
 import Header from "../includes/Header";
 import Input from "../components/Input";
 import Select from "../components/Select";
 import Button from "../components/Button";
-import Loader from "../components/Loader";
 import states from "../utils/states";
 import "sweetalert2/src/sweetalert2.scss";
 import "../assets/scss/pages/_user_page.scss";
@@ -25,7 +23,6 @@ const cleanUser = {
 };
 
 const EditUser = props => {
-  const [loading, setLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState(cleanUser);
 
   const changeFieldHandler = (event) => {
@@ -70,7 +67,7 @@ const EditUser = props => {
     // Swal.fire("Success!", JSON.stringify(currentUser, null, 4), "success");
   }
 
-  const { imgBase64, name, address } = currentUser;
+  const { name, address } = currentUser;
 
   return (
     <>
@@ -81,85 +78,81 @@ const EditUser = props => {
           <div className="container-fluid">
             <div className="row">
               <div className="col-12">
-                {loading ? <Loader /> : (
-                  <>
-                    <h1 className="title">Edit User</h1>
-                    
-                    <form>
-                      <div className="collumn">
-                        <Input
-                          label="Name"
-                          name="name"
-                          value={name}
-                          onchange={changeFieldHandler}
-                        />
+                <h1 className="title">Edit User</h1>
 
-                        <Input
-                          label="Street"
-                          name="streetName"
-                          value={address.streetName}
-                          onchange={changeAddressFieldHandler}
-                        />
+                <form>
+                  <div className="collumn">
+                    <Input
+                      label="Name"
+                      name="name"
+                      value={name}
+                      onchange={changeFieldHandler}
+                    />
 
-                        <Input
-                          label="Number"
-                          name="streetNumber"
-                          value={address.streetNumber}
-                          onchange={changeAddressFieldHandler}
-                        />
+                    <Input
+                      label="Street"
+                      name="streetName"
+                      value={address.streetName}
+                      onchange={changeAddressFieldHandler}
+                    />
 
-                        <Input
-                          label="Additional Info"
-                          name="additionalInfo"
-                          value={address.additionalInfo}
-                          onchange={changeAddressFieldHandler}
-                        />
-                      </div>
+                    <Input
+                      label="Number"
+                      name="streetNumber"
+                      value={address.streetNumber}
+                      onchange={changeAddressFieldHandler}
+                    />
 
-                      <div className="collumn">
-                        <Input
-                          label="Neighborhood"
-                          name="neighborhood"
-                          value={address.neighborhood}
-                          onchange={changeAddressFieldHandler}
-                        />
+                    <Input
+                      label="Additional Info"
+                      name="additionalInfo"
+                      value={address.additionalInfo}
+                      onchange={changeAddressFieldHandler}
+                    />
+                  </div>
 
-                        <Input
-                          label="City"
-                          name="city"
-                          value={address.city}
-                          onchange={changeAddressFieldHandler}
-                        />
+                  <div className="collumn">
+                    <Input
+                      label="Neighborhood"
+                      name="neighborhood"
+                      value={address.neighborhood}
+                      onchange={changeAddressFieldHandler}
+                    />
 
-                        <Select
-                          label="UF"
-                          name="uf"
-                          value={address.uf}
-                          options={states}
-                          onchange={changeAddressFieldHandler}
-                        />
+                    <Input
+                      label="City"
+                      name="city"
+                      value={address.city}
+                      onchange={changeAddressFieldHandler}
+                    />
 
-                        <Input
-                          label="CEP"
-                          name="cep"
-                          value={address.cep}
-                          onchange={changeCepHandler}
-                          onblur={testBlur}
-                        />
-                      </div>
+                    <Select
+                      label="UF"
+                      name="uf"
+                      value={address.uf}
+                      options={states}
+                      onchange={changeAddressFieldHandler}
+                    />
 
-                      <div className="collumn">
-                        <div className="image-preview">
+                    <Input
+                      label="CEP"
+                      name="cep"
+                      value={address.cep}
+                      onchange={changeCepHandler}
+                      onblur={testBlur}
+                    />
+                  </div>
 
-                        </div>
-                      </div>
-                    </form>
+                  <div className="collumn">
+                    <div className="image-preview">
 
-                    <Button type="submit" onclick={saveUserHandler}>
-                      Save
-                    </Button>
-                  </>
-                )}
+                    </div>
+                  </div>
+                </form>
+
+                <Button type="submit" onclick={saveUserHandler}>
+                  Save
+                </Button>
               </div>
             </div>
           </div>

@@ -59,7 +59,7 @@ const EditUser = props => {
     Swal.fire("Success!", JSON.stringify(currentUser, null, 4), "success")
   }
 
-  const { imgBase64, name, address } = currentUser;
+  const { name, address } = currentUser;
 
   return (
     <>
