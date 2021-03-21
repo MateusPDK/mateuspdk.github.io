@@ -7,6 +7,7 @@ import ListUsersPage from "./pages/ListUsersPage";
 import EditUserPage from "./pages/EditUserPage";
 import AddUserPage from "./pages/AddUserPage";
 import ListCepsPage from "./pages/ListCepsPage";
+import registerServiceWorker from "./registerServiceWorker";
 
 // import "bootstrap/dist/css/bootstrap.css";
 import "./assets/scss/main.scss";
@@ -25,3 +26,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+registerServiceWorker();
