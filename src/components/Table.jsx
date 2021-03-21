@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 
 import ButtonIcon from "./ButtonIcon";
 
@@ -36,9 +37,24 @@ const UserRow = ({
 );
 
 const Table = ({ headers, data }) => {
-  const deleteUserHandler = id => {
-    console.log(`Delete User ${id}`);
-  };
+  const deleteUserHandler = userId => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'User.',
+          'success'
+        )
+      }
+    })
+  }
 
   const renderUsers = users => {
     return users.map(({ id, imgUrl, name, address }) => {
@@ -61,6 +77,10 @@ const Table = ({ headers, data }) => {
       )
     });
   };
+
+  if (!data.length) {
+    return <table className="table-default text-center">Nenhum resultado foi encontrado</table>
+  }
   
   return (
     <table className="table-default">

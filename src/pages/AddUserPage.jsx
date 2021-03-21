@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import queryString from "query-string";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 
 import Header from "../includes/Header";
@@ -11,31 +10,23 @@ import states from "../utils/states";
 import "sweetalert2/src/sweetalert2.scss";
 import "../assets/scss/pages/_user_page.scss";
 
+const cleanUser = {
+  name:"",
+  imgBase64:"",
+  address: {
+    streetName:"",
+    streetNumber:"",
+    additionalInfo:"",
+    neighborhood:"",
+    city:"",
+    uf:"AC",
+    cep:""
+  }
+};
+
 const EditUser = props => {
-  const [loading, setLoading] = useState(true);
-  const [currentUser, setCurrentUser] = useState({});
-
-  const userId = queryString.parse(props.location.search);
-
-  if (!userId.id) {
-    props.history.push("users");
-  } 
-  console.log(`https://stoplight.io/mocks/nelsojost/dojo-cc-api/8271856/user/${userId.id && userId.id}`);
-  
-  useEffect(() => {
-    fetch(`https://stoplight.io/mocks/nelsojost/dojo-cc-api/8271856/user/${userId.id && userId.id}`)
-      .then(async response => {
-        const user = await response.json();
-        
-        if (!response.ok) {
-          console.log(response);
-        }
-
-        setCurrentUser(user);
-        console.log(user);
-      })
-      .finally(() => setLoading(false))
-  }, [userId.id]);
+  const [loading, setLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState(cleanUser);
 
   const changeFieldHandler = (event) => {
     const { name, value } = event.target;
@@ -52,11 +43,31 @@ const EditUser = props => {
   const changeCepHandler = (event) => {
     const { name, value } = event.target;
 
+    setCurrentUser({ ...currentUser, address: { ...currentUser.address, [name]: value } });
     console.log(name, value);
   }
 
+  const testBlur = (event) => {
+    const { name, value } = event.target;
+    if (value) {
+      console.log("BLURRED!");
+      console.log(name, value);
+    }
+  }
+
   const saveUserHandler = () => {
-    Swal.fire("Success!", JSON.stringify(currentUser, null, 4), "success")
+    const requestOptions = {
+      method: 'POST',
+      headers: { 
+          'Content-Type': 'application/json',
+          // 'Authorization': 'Bearer my-token',
+      },
+      body: JSON.stringify({ ...currentUser })
+    };
+    fetch('https://stoplight.io/mocks/nelsojost/dojo-cc-api/8271856/users', requestOptions)
+        .then(response => console.log(response))
+
+    // Swal.fire("Success!", JSON.stringify(currentUser, null, 4), "success");
   }
 
   const { imgBase64, name, address } = currentUser;
@@ -133,6 +144,7 @@ const EditUser = props => {
                           name="cep"
                           value={address.cep}
                           onchange={changeCepHandler}
+                          onblur={testBlur}
                         />
                       </div>
 

@@ -6,11 +6,11 @@ import "../assets/scss/includes/_header.scss";
 const routes = [
   {
     name: "Usuários",
-    route: `${process.env.PUBLIC_URL}/users`,
+    path: `${process.env.PUBLIC_URL}/users`,
   },
   {
     name: "CEP's",
-    route: `${process.env.PUBLIC_URL}/list-of-ceps`,
+    path: `${process.env.PUBLIC_URL}/ceps`,
   },
 ];
 

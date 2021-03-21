@@ -19,6 +19,10 @@ button.btn-default {
     box-shadow: 0 0 16px rgba(88,255,120, 0.7);
     transition: box-shadow .3s ease-in-out;
   }
+
+  &.mt-30 {
+    margin-top: 30px;
+  }
 }
 
 button.btn-icon {
