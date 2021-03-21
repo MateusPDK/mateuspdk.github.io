@@ -6,6 +6,7 @@ import ButtonIcon from "./ButtonIcon";
 import "../assets/scss/components/_table.scss";
 
 const UserRow = ({
+  mobile,
   id,
   imgUrl,
   name,
@@ -17,9 +18,9 @@ const UserRow = ({
   uf,
   editUser,
   deleteUser
-}) => (
+}) => !mobile ? (
   <tr>
-    <td><div className="user-img" style={{backgroundImage: `url(${imgUrl ? imgUrl : "../assets/img/icons/user.svg"})`}} /></td>
+    {imgUrl && (<td><div className="user-img" style={{backgroundImage: `url('${imgUrl}'})`}} /></td>)}
     <td>{name && name}</td>
     <td>{cep && cep}</td>
     <td>{streetName && streetName} {streetNumber && `, ${streetNumber}`}</td>
@@ -34,6 +35,23 @@ const UserRow = ({
       <ButtonIcon remove name="Delete" onclick={deleteUser} />
     </td>
   </tr>
+) : (
+  <div className="row-user">
+    {imgUrl && (<div className="user-img" style={{backgroundImage: `url('${imgUrl}'})`}} />)}
+    <div>{name && name}</div>
+    <div>{cep && cep}</div>
+    <div>{streetName && streetName} {streetNumber && `, ${streetNumber}`}</div>
+    <div>{neighborhood && neighborhood}</div>
+    <div>{city && city}</div>
+    <div>{uf && uf}</div>
+    <div className="actions">
+      <a href={`${process.env.PUBLIC_URL}/update-user?id=${id}`} title="Editar Usuário" alt="Editar Usuário">
+        <ButtonIcon edit name="Edit" onclick={editUser} />
+      </a>
+      
+      <ButtonIcon remove name="Delete" onclick={deleteUser} />
+    </div>
+  </div>
 );
 
 const Table = ({ headers, data }) => {
@@ -56,13 +74,14 @@ const Table = ({ headers, data }) => {
     })
   }
 
-  const renderUsers = users => {
+  const renderUsers = (users, isMobile) => {
     return users.map(({ id, imgUrl, name, address }) => {
       const { cep, city, neighborhood, streetName, streetNumber, uf } = address;
 
       return (
         <UserRow
           key={id}
+          mobile={isMobile}
           id={id}
           imgUrl={imgUrl}
           name={name}
@@ -83,17 +102,23 @@ const Table = ({ headers, data }) => {
   }
   
   return (
-    <table className="table-default">
-      <thead>
-        <tr>
-          {headers.map((header, index) => <th key={index}>{header.toString()}</th>)}
-        </tr>
-      </thead>
+    <>
+      <table className="table-default">
+        <thead>
+          <tr>
+            {headers.map((header, index) => <th key={index}>{header.toString()}</th>)}
+          </tr>
+        </thead>
 
-      <tbody>
-        {renderUsers(data)}
-      </tbody>
-    </table>
+        <tbody>
+          {renderUsers(data)}
+        </tbody>
+      </table>
+
+      <div id="list-mobile">
+        {renderUsers(data, true)}
+      </div>
+    </>
   );
 }
 

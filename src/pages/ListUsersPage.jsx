@@ -4,6 +4,7 @@ import Header from "../includes/Header";
 import Loader from "../components/Loader";
 import Table from "../components/Table";
 import Button from "../components/Button";
+import "../assets/scss/pages/_list_user_page.scss";
 
 const ListUsers = () => {
   const [loading, setLoading] = useState(true);
@@ -32,6 +33,10 @@ const ListUsers = () => {
           <div className="container-fluid">
             <div className="row">
               <div className="col-12">
+                <a href={`${process.env.PUBLIC_URL}/add-user`}>
+                  <Button classes="mb-30">Adicionar Usuário</Button>
+                </a>
+
                 {loading ? <Loader /> : (
                   <Table
                     headers={["Foto", "Nome", "CEP", "Logradouro", "Bairro", "Cidade", "UF", "Ações"]}
@@ -39,10 +44,6 @@ const ListUsers = () => {
                     loading={loading}
                   />
                 )}
-                
-                <a href={`${process.env.PUBLIC_URL}/add-user`}>
-                  <Button classes="mt-30">Adicionar Usuário</Button>
-                </a>
               </div>
             </div>
           </div>

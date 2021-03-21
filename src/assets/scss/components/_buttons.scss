@@ -14,14 +14,15 @@ button.btn-default {
   color: $lowBlack;
   font-weight: $bold;
   transition: box-shadow .3s ease-in-out;
+  max-width: 100%;
 
   &:hover {
     box-shadow: 0 0 16px rgba(88,255,120, 0.7);
     transition: box-shadow .3s ease-in-out;
   }
 
-  &.mt-30 {
-    margin-top: 30px;
+  &.mb-30 {
+    margin-bottom: 30px;
   }
 }
 

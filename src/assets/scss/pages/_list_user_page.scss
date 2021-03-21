@@ -1,0 +1,94 @@
+@import "../variables";
+@import "../utils";
+
+.default-wrapper {
+
+  table.table-default {
+    display: table;
+  }
+
+  #list-mobile {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    div.row-user {
+      width: 48%;
+      border: 1px solid $black;
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 20px;
+
+      div {
+        margin-bottom: 5px;
+
+        &.user-img {
+          display: block;
+          margin: 0 auto 30px;
+          width: 60px;
+          height: 60px;
+          border-radius: 5px;
+          background-color: $black;
+        }
+
+        &.actions {
+          display: flex;
+          justify-content: flex-end;
+
+          button {
+            margin-left: 10px;
+            margin-right: 0;
+          }
+        }
+      }
+
+      @media screen and (max-width: 590px) {
+        width: 100%;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    table.table-default {
+      thead,
+      tbody {
+        tr {
+          th {
+            font-family: $roboto;
+            font-size: 16px;
+            line-height: 20px;
+            color: $black;
+
+            &:first-of-type {
+              width: 50px;
+            }
+            
+            &:last-of-type {
+              text-align: center;
+              width: 100px;
+            }
+          }
+
+          td {
+            font-family: $roboto;
+            font-size: 14px;
+            line-height: 20px;
+            color: $black;
+            padding-left: 4px;
+            padding-right: 4px;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    table.table-default {
+      display: none;
+    }
+  
+    #list-mobile {
+      display: flex;
+    }
+  }
+}

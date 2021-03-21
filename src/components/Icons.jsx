@@ -24,3 +24,22 @@ export const Delete = ({ color = "#fff" }) => (
     </g>
   </svg>
 );
+
+export const Hamburguer = ({ color = "#fff" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 17">
+    <g>
+      <path fill={color} d="M0 0h25v3H0z" />
+      <path fill={color} d="M0 7h25v3H0z" />
+      <path fill={color} d="M0 14h25v3H0z" />
+    </g>
+  </svg>
+);
+
+export const Close = ({ color = "#fff" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.698 29.699">
+    <g fill="none" stroke={color} stroke-width="2">
+      <path d="M28.992.708L.707 28.992" />
+      <path d="M28.992 28.992L.707.708" />
+    </g>
+  </svg>
+);
